@@ -3,39 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Trial Soal Bela Negara</title>
 
 <style>
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    margin: 0;
-    background: #f3f6fa;
+    background: #eef2f7;
     color: #222;
 }
 
+/* ================= HEADER ================= */
+
 .header {
-    background: #1f3c88;
+    background: #173b70;
     color: white;
-    padding: 20px 30px;
+    padding: 18px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 24px;
+.header-title {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-#timer {
+.header-subtitle {
+    font-size: 13px;
+    margin-top: 4px;
+    opacity: 0.85;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 950px;
+    margin: 35px auto;
+}
+
+/* ================= START PAGE ================= */
+
+.start-card {
     background: white;
+    border-radius: 14px;
+    padding: 45px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.start-card h1 {
+    text-align: center;
+    color: #173b70;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.start-card .desc {
+    text-align: center;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.info-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.info {
+    background: #f3f6fa;
+    padding: 18px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.info b {
+    display: block;
+    color: #173b70;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd3dc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.checkbox input {
+    margin-top: 3px;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #173b70;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #102d56;
+}
+
+/* ================= EXAM PAGE ================= */
+
+.exam-page {
+    display: none;
+}
+
+.exam-top {
+    background: white;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.exam-info b {
+    color: #173b70;
+}
+
+.timer {
+    background: #fff1f1;
     color: #d62828;
     padding: 10px 18px;
     border-radius: 8px;
@@ -43,287 +174,907 @@ body {
     font-weight: bold;
 }
 
-.container {
-    max-width: 850px;
-    margin: 30px auto;
-    padding: 0 20px;
+.exam-content {
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 18px;
 }
 
-.identity,
-.question,
-#hasil {
+.question-card {
     background: white;
-    padding: 22px;
     border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 28px;
+    min-height: 420px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
 
-.identity h2 {
-    margin-top: 0;
-    color: #1f3c88;
+.question-number {
+    color: #173b70;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 15px;
-}
-
-.question h3 {
-    margin-top: 0;
-    color: #1f3c88;
+.question-text {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 25px;
 }
 
 .option {
-    display: block;
-    padding: 11px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 7px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    margin-bottom: 10px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .option:hover {
-    background: #eef3ff;
+    background: #f2f6fc;
+    border-color: #173b70;
 }
 
 .option input {
-    margin-right: 8px;
+    margin-top: 3px;
 }
 
-button {
-    width: 100%;
-    padding: 15px;
-    background: #1f3c88;
-    color: white;
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 12px;
+}
+
+.nav-btn {
+    padding: 11px 20px;
     border: none;
-    border-radius: 8px;
-    font-size: 17px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.prev {
+    background: #e4e8ee;
+    color: #333;
+}
+
+.next {
+    background: #173b70;
+    color: white;
+}
+
+/* ================= NUMBER NAVIGATION ================= */
+
+.number-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    height: fit-content;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.number-card h3 {
+    color: #173b70;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+}
+
+.number {
+    height: 36px;
+    border: 1px solid #ccd3dc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.number.active {
+    background: #173b70;
+    color: white;
+}
+
+.number.answered {
+    background: #dcecff;
+    border-color: #173b70;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #198754;
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    margin: 5px 0 30px;
 }
 
-button:hover {
-    background: #162d68;
-}
+/* ================= RESULT ================= */
 
-#hasil {
+.result-page {
     display: none;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
 }
 
-.waktu-habis {
-    color: #d62828 !important;
+.result-card {
+    background: white;
+    text-align: center;
+    padding: 50px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.result-card h1 {
+    color: #173b70;
+    margin-bottom: 20px;
+}
+
+.score {
+    font-size: 55px;
+    font-weight: bold;
+    color: #198754;
+    margin: 20px 0;
+}
+
+.result-detail {
+    line-height: 2;
+    margin-bottom: 25px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 700px) {
+
+    .info-box {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-content {
+        grid-template-columns: 1fr;
+    }
+
+    .start-card {
+        padding: 25px;
+    }
+
+    .header {
+        padding: 15px 5%;
+    }
+
+    .header-title {
+        font-size: 17px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <div class="header">
-    <h1>Trial Soal Bela Negara</h1>
-    <div id="timer">07:00</div>
+
+    <div>
+        <div class="header-title">
+            BELA NEGARA
+        </div>
+
+        <div class="header-subtitle">
+            Trial Soal Pilihan Ganda
+        </div>
+    </div>
+
 </div>
+
+
+<!-- ================= START PAGE ================= -->
 
 <div class="container">
 
-<div class="identity">
-    <h2>Identitas Peserta</h2>
-    <input type="text" id="nama" placeholder="Nama Lengkap">
-    <input type="text" id="npm" placeholder="NPM">
-</div>
+<div id="startPage" class="start-card">
 
-<form id="quizForm">
+    <h1>TRIAL SOAL BELA NEGARA</h1>
 
-<div class="question">
-<h3>1. Apa yang dimaksud dengan bela negara?</h3>
-<label class="option"><input type="radio" name="q1" value="A"> A. Kegiatan untuk kepentingan pribadi</label>
-<label class="option"><input type="radio" name="q1" value="B"> B. Sikap dan perilaku warga negara dalam menjaga negara</label>
-<label class="option"><input type="radio" name="q1" value="C"> C. Kegiatan yang hanya dilakukan oleh TNI</label>
-<label class="option"><input type="radio" name="q1" value="D"> D. Kegiatan ekonomi masyarakat</label>
-<label class="option"><input type="radio" name="q1" value="E"> E. Kegiatan politik suatu kelompok</label>
-</div>
+    <p class="desc">
+        Silakan lengkapi identitas sebelum memulai ujian.
+    </p>
 
-<div class="question">
-<h3>2. Salah satu contoh bela negara di lingkungan kampus adalah...</h3>
-<label class="option"><input type="radio" name="q2" value="A"> A. Mengabaikan aturan kampus</label>
-<label class="option"><input type="radio" name="q2" value="B"> B. Menyebarkan informasi palsu</label>
-<label class="option"><input type="radio" name="q2" value="C"> C. Menjaga ketertiban dan mengikuti aturan</label>
-<label class="option"><input type="radio" name="q2" value="D"> D. Merusak fasilitas kampus</label>
-<label class="option"><input type="radio" name="q2" value="E"> E. Menghindari kegiatan sosial</label>
-</div>
+    <div class="info-box">
 
-<div class="question">
-<h3>3. Sikap yang mencerminkan cinta tanah air adalah...</h3>
-<label class="option"><input type="radio" name="q3" value="A"> A. Tidak peduli terhadap lingkungan</label>
-<label class="option"><input type="radio" name="q3" value="B"> B. Menolak budaya Indonesia</label>
-<label class="option"><input type="radio" name="q3" value="C"> C. Menghargai budaya dan produk dalam negeri</label>
-<label class="option"><input type="radio" name="q3" value="D"> D. Melanggar peraturan</label>
-<label class="option"><input type="radio" name="q3" value="E"> E. Menyebarkan konflik</label>
-</div>
+        <div class="info">
+            <b>10</b>
+            <span>Jumlah Soal</span>
+        </div>
 
-<div class="question">
-<h3>4. Menghormati keberagaman merupakan bentuk...</h3>
-<label class="option"><input type="radio" name="q4" value="A"> A. Sikap individualisme</label>
-<label class="option"><input type="radio" name="q4" value="B"> B. Persaingan sosial</label>
-<label class="option"><input type="radio" name="q4" value="C"> C. Persatuan dan kesatuan</label>
-<label class="option"><input type="radio" name="q4" value="D"> D. Perpecahan</label>
-<label class="option"><input type="radio" name="q4" value="E"> E. Konflik masyarakat</label>
-</div>
+        <div class="info">
+            <b>7 Menit</b>
+            <span>Waktu Pengerjaan</span>
+        </div>
 
-<div class="question">
-<h3>5. Contoh menjaga lingkungan sebagai bentuk bela negara adalah...</h3>
-<label class="option"><input type="radio" name="q5" value="A"> A. Membuang sampah pada tempatnya</label>
-<label class="option"><input type="radio" name="q5" value="B"> B. Membuang sampah ke sungai</label>
-<label class="option"><input type="radio" name="q5" value="C"> C. Merusak fasilitas umum</label>
-<label class="option"><input type="radio" name="q5" value="D"> D. Membakar sampah sembarangan</label>
-<label class="option"><input type="radio" name="q5" value="E"> E. Menebang pohon sembarangan</label>
-</div>
+        <div class="info">
+            <b>A - E</b>
+            <span>Pilihan Jawaban</span>
+        </div>
 
-<div class="question">
-<h3>6. Dasar negara Indonesia adalah...</h3>
-<label class="option"><input type="radio" name="q6" value="A"> A. UUD 1945</label>
-<label class="option"><input type="radio" name="q6" value="B"> B. Pancasila</label>
-<label class="option"><input type="radio" name="q6" value="C"> C. Bhinneka Tunggal Ika</label>
-<label class="option"><input type="radio" name="q6" value="D"> D. NKRI</label>
-<label class="option"><input type="radio" name="q6" value="E"> E. Proklamasi</label>
-</div>
+    </div>
 
-<div class="question">
-<h3>7. Salah satu tujuan bela negara adalah...</h3>
-<label class="option"><input type="radio" name="q7" value="A"> A. Menjaga keutuhan Negara Kesatuan Republik Indonesia</label>
-<label class="option"><input type="radio" name="q7" value="B"> B. Menciptakan perselisihan</label>
-<label class="option"><input type="radio" name="q7" value="C"> C. Menghilangkan keberagaman</label>
-<label class="option"><input type="radio" name="q7" value="D"> D. Mengutamakan kepentingan pribadi</label>
-<label class="option"><input type="radio" name="q7" value="E"> E. Mengabaikan aturan</label>
-</div>
 
-<div class="question">
-<h3>8. Perilaku yang sesuai dengan nilai Pancasila adalah...</h3>
-<label class="option"><input type="radio" name="q8" value="A"> A. Memaksakan kehendak</label>
-<label class="option"><input type="radio" name="q8" value="B"> B. Menghargai pendapat orang lain</label>
-<label class="option"><input type="radio" name="q8" value="C"> C. Melakukan diskriminasi</label>
-<label class="option"><input type="radio" name="q8" value="D"> D. Menolak perbedaan</label>
-<label class="option"><input type="radio" name="q8" value="E"> E. Mengutamakan diri sendiri</label>
-</div>
+    <div class="input-group">
 
-<div class="question">
-<h3>9. Gotong royong dapat memperkuat...</h3>
-<label class="option"><input type="radio" name="q9" value="A"> A. Persatuan masyarakat</label>
-<label class="option"><input type="radio" name="q9" value="B"> B. Perpecahan</label>
-<label class="option"><input type="radio" name="q9" value="C"> C. Konflik</label>
-<label class="option"><input type="radio" name="q9" value="D"> D. Persaingan</label>
-<label class="option"><input type="radio" name="q9" value="E"> E. Individualisme</label>
-</div>
+        <label>Nama Lengkap</label>
 
-<div class="question">
-<h3>10. Sikap yang tepat sebagai mahasiswa dalam bela negara adalah...</h3>
-<label class="option"><input type="radio" name="q10" value="A"> A. Tidak peduli terhadap bangsa</label>
-<label class="option"><input type="radio" name="q10" value="B"> B. Mengabaikan pendidikan</label>
-<label class="option"><input type="radio" name="q10" value="C"> C. Belajar dengan sungguh-sungguh dan berkontribusi positif</label>
-<label class="option"><input type="radio" name="q10" value="D"> D. Melanggar aturan</label>
-<label class="option"><input type="radio" name="q10" value="E"> E. Menyebarkan berita palsu</label>
-</div>
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama lengkap"
+        >
 
-<button type="button" onclick="kirimJawaban()">KUMPULKAN JAWABAN</button>
+    </div>
 
-</form>
 
-<div id="hasil"></div>
+    <div class="input-group">
+
+        <label>NPM</label>
+
+        <input
+            type="text"
+            id="npm"
+            placeholder="Masukkan NPM"
+        >
+
+    </div>
+
+
+    <label class="checkbox">
+
+        <input type="checkbox" id="persetujuan">
+
+        <span>
+            Saya telah mengisi data dengan benar dan siap mengerjakan
+            seluruh soal yang tersedia.
+        </span>
+
+    </label>
+
+
+    <button class="btn" onclick="mulaiUjian()">
+        MULAI UJIAN
+    </button>
 
 </div>
+
+
+<!-- ================= EXAM PAGE ================= -->
+
+<div id="examPage" class="exam-page">
+
+    <div class="exam-top">
+
+        <div class="exam-info">
+
+            <div>
+                Nama:
+                <b id="displayNama"></b>
+            </div>
+
+            <div>
+                Soal:
+                <b id="nomorAtas">1</b> / 10
+            </div>
+
+        </div>
+
+        <div id="timer" class="timer">
+            07:00
+        </div>
+
+    </div>
+
+
+    <div class="exam-content">
+
+        <div>
+
+            <div class="question-card">
+
+                <div class="question-number" id="questionNumber">
+                    SOAL 1
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div id="options"></div>
+
+                <div class="navigation">
+
+                    <button
+                        class="nav-btn prev"
+                        onclick="sebelumnya()"
+                    >
+                        ← Sebelumnya
+                    </button>
+
+                    <button
+                        class="nav-btn next"
+                        onclick="berikutnya()"
+                    >
+                        Berikutnya →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="number-card">
+
+            <h3>Navigasi Soal</h3>
+
+            <div class="numbers" id="numbers"></div>
+
+            <button
+                class="submit-btn"
+                onclick="kumpulkan()"
+            >
+                KUMPULKAN
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RESULT PAGE ================= -->
+
+<div id="resultPage" class="result-page">
+
+    <div class="result-card">
+
+        <h1>UJIAN SELESAI</h1>
+
+        <div class="result-detail">
+
+            <div>
+                Nama:
+                <b id="hasilNama"></b>
+            </div>
+
+            <div>
+                NPM:
+                <b id="hasilNpm"></b>
+            </div>
+
+            <div>
+                Jawaban benar:
+                <b id="hasilBenar"></b> / 10
+            </div>
+
+        </div>
+
+        <div class="score" id="nilai">
+            0
+        </div>
+
+        <div>
+            Nilai Akhir
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
 
 <script>
+
+/* ================= DATA SOAL ================= */
+
+const soal = [
+
+{
+    pertanyaan:
+    "Apa yang dimaksud dengan bela negara?",
+
+    pilihan: [
+        "Kegiatan untuk kepentingan pribadi",
+        "Sikap dan perilaku warga negara dalam menjaga negara",
+        "Kegiatan yang hanya dilakukan oleh TNI",
+        "Kegiatan ekonomi masyarakat",
+        "Kegiatan politik suatu kelompok"
+    ],
+
+    jawaban: 1
+},
+
+{
+    pertanyaan:
+    "Salah satu contoh bela negara di lingkungan kampus adalah...",
+
+    pilihan: [
+        "Mengabaikan aturan kampus",
+        "Menyebarkan informasi palsu",
+        "Menjaga ketertiban dan mengikuti aturan",
+        "Merusak fasilitas kampus",
+        "Menghindari kegiatan sosial"
+    ],
+
+    jawaban: 2
+},
+
+{
+    pertanyaan:
+    "Sikap yang mencerminkan cinta tanah air adalah...",
+
+    pilihan: [
+        "Tidak peduli terhadap lingkungan",
+        "Menolak budaya Indonesia",
+        "Menghargai budaya dan produk dalam negeri",
+        "Melanggar peraturan",
+        "Menyebarkan konflik"
+    ],
+
+    jawaban: 2
+},
+
+{
+    pertanyaan:
+    "Menghormati keberagaman merupakan bentuk...",
+
+    pilihan: [
+        "Sikap individualisme",
+        "Persaingan sosial",
+        "Persatuan dan kesatuan",
+        "Perpecahan",
+        "Konflik masyarakat"
+    ],
+
+    jawaban: 2
+},
+
+{
+    pertanyaan:
+    "Contoh menjaga lingkungan sebagai bentuk bela negara adalah...",
+
+    pilihan: [
+        "Membuang sampah pada tempatnya",
+        "Membuang sampah ke sungai",
+        "Merusak fasilitas umum",
+        "Membakar sampah sembarangan",
+        "Menebang pohon sembarangan"
+    ],
+
+    jawaban: 0
+},
+
+{
+    pertanyaan:
+    "Dasar negara Indonesia adalah...",
+
+    pilihan: [
+        "UUD 1945",
+        "Pancasila",
+        "Bhinneka Tunggal Ika",
+        "NKRI",
+        "Proklamasi"
+    ],
+
+    jawaban: 1
+},
+
+{
+    pertanyaan:
+    "Salah satu tujuan bela negara adalah...",
+
+    pilihan: [
+        "Menjaga keutuhan Negara Kesatuan Republik Indonesia",
+        "Menciptakan perselisihan",
+        "Menghilangkan keberagaman",
+        "Mengutamakan kepentingan pribadi",
+        "Mengabaikan aturan"
+    ],
+
+    jawaban: 0
+},
+
+{
+    pertanyaan:
+    "Perilaku yang sesuai dengan nilai Pancasila adalah...",
+
+    pilihan: [
+        "Memaksakan kehendak",
+        "Menghargai pendapat orang lain",
+        "Melakukan diskriminasi",
+        "Menolak perbedaan",
+        "Mengutamakan diri sendiri"
+    ],
+
+    jawaban: 1
+},
+
+{
+    pertanyaan:
+    "Gotong royong dapat memperkuat...",
+
+    pilihan: [
+        "Persatuan masyarakat",
+        "Perpecahan",
+        "Konflik",
+        "Persaingan",
+        "Individualisme"
+    ],
+
+    jawaban: 0
+},
+
+{
+    pertanyaan:
+    "Sikap yang tepat sebagai mahasiswa dalam bela negara adalah...",
+
+    pilihan: [
+        "Tidak peduli terhadap bangsa",
+        "Mengabaikan pendidikan",
+        "Belajar dengan sungguh-sungguh dan berkontribusi positif",
+        "Melanggar aturan",
+        "Menyebarkan berita palsu"
+    ],
+
+    jawaban: 2
+}
+
+];
+
+
+/* ================= VARIABEL ================= */
+
+let nomor = 0;
+
+let jawabanUser = Array(soal.length).fill(null);
+
 let waktu = 7 * 60;
-let sudahSubmit = false;
 
-const kunci = {
-    q1: "B",
-    q2: "C",
-    q3: "C",
-    q4: "C",
-    q5: "A",
-    q6: "B",
-    q7: "A",
-    q8: "B",
-    q9: "A",
-    q10: "C"
-};
+let timerInterval;
 
-const timer = setInterval(function() {
+let sudahSelesai = false;
 
-    let menit = Math.floor(waktu / 60);
-    let detik = waktu % 60;
 
-    document.getElementById("timer").textContent =
-        String(menit).padStart(2, "0") + ":" +
-        String(detik).padStart(2, "0");
+/* ================= MULAI UJIAN ================= */
 
-    if (waktu <= 60) {
-        document.getElementById("timer").classList.add("waktu-habis");
-    }
+function mulaiUjian() {
 
-    if (waktu <= 0) {
-        clearInterval(timer);
+    const nama = document.getElementById("nama").value.trim();
 
-        if (!sudahSubmit) {
-            alert("Waktu habis! Jawaban akan dikumpulkan otomatis.");
-            kirimJawaban();
-        }
+    const npm = document.getElementById("npm").value.trim();
+
+    const setuju = document.getElementById("persetujuan").checked;
+
+
+    if (nama === "" || npm === "") {
+
+        alert("Silakan isi Nama dan NPM terlebih dahulu.");
 
         return;
     }
 
-    waktu--;
 
-}, 1000);
+    if (!setuju) {
+
+        alert("Centang pernyataan persetujuan terlebih dahulu.");
+
+        return;
+    }
 
 
-function kirimJawaban() {
+    document.getElementById("displayNama").textContent = nama;
 
-    if (sudahSubmit) return;
+    document.getElementById("startPage").style.display = "none";
 
-    sudahSubmit = true;
-    clearInterval(timer);
+    document.getElementById("examPage").style.display = "block";
 
-    let nama = document.getElementById("nama").value;
-    let npm = document.getElementById("npm").value;
+
+    tampilkanSoal();
+
+    buatNavigasi();
+
+    mulaiTimer();
+}
+
+
+/* ================= TAMPILKAN SOAL ================= */
+
+function tampilkanSoal() {
+
+    const data = soal[nomor];
+
+
+    document.getElementById("questionNumber").textContent =
+        "SOAL " + (nomor + 1);
+
+
+    document.getElementById("nomorAtas").textContent =
+        nomor + 1;
+
+
+    document.getElementById("questionText").textContent =
+        data.pertanyaan;
+
+
+    const options = document.getElementById("options");
+
+    options.innerHTML = "";
+
+
+    data.pilihan.forEach(function(pilihan, index) {
+
+        const label = document.createElement("label");
+
+        label.className = "option";
+
+
+        const radio = document.createElement("input");
+
+        radio.type = "radio";
+
+        radio.name = "jawaban";
+
+        radio.value = index;
+
+
+        if (jawabanUser[nomor] === index) {
+
+            radio.checked = true;
+
+        }
+
+
+        radio.onchange = function() {
+
+            jawabanUser[nomor] = index;
+
+            buatNavigasi();
+
+        };
+
+
+        label.appendChild(radio);
+
+        label.appendChild(
+            document.createTextNode(
+                String.fromCharCode(65 + index) +
+                ". " +
+                pilihan
+            )
+        );
+
+
+        options.appendChild(label);
+
+    });
+
+}
+
+
+/* ================= NAVIGASI ================= */
+
+function buatNavigasi() {
+
+    const container = document.getElementById("numbers");
+
+    container.innerHTML = "";
+
+
+    for (let i = 0; i < soal.length; i++) {
+
+        const button = document.createElement("button");
+
+        button.className = "number";
+
+        button.textContent = i + 1;
+
+
+        if (i === nomor) {
+
+            button.classList.add("active");
+
+        }
+
+
+        if (jawabanUser[i] !== null) {
+
+            button.classList.add("answered");
+
+        }
+
+
+        button.onclick = function() {
+
+            nomor = i;
+
+            tampilkanSoal();
+
+            buatNavigasi();
+
+        };
+
+
+        container.appendChild(button);
+
+    }
+
+}
+
+
+/* ================= SEBELUMNYA ================= */
+
+function sebelumnya() {
+
+    if (nomor > 0) {
+
+        nomor--;
+
+        tampilkanSoal();
+
+        buatNavigasi();
+
+    }
+
+}
+
+
+/* ================= BERIKUTNYA ================= */
+
+function berikutnya() {
+
+    if (nomor < soal.length - 1) {
+
+        nomor++;
+
+        tampilkanSoal();
+
+        buatNavigasi();
+
+    }
+
+}
+
+
+/* ================= TIMER ================= */
+
+function mulaiTimer() {
+
+    timerInterval = setInterval(function() {
+
+        const menit = Math.floor(waktu / 60);
+
+        const detik = waktu % 60;
+
+
+        document.getElementById("timer").textContent =
+
+            String(menit).padStart(2, "0") +
+            ":" +
+            String(detik).padStart(2, "0");
+
+
+        if (waktu <= 60) {
+
+            document.getElementById("timer").style.color =
+                "#d62828";
+
+        }
+
+
+        if (waktu <= 0) {
+
+            clearInterval(timerInterval);
+
+            alert("Waktu habis! Jawaban akan dikumpulkan otomatis.");
+
+            kumpulkan();
+
+            return;
+
+        }
+
+
+        waktu--;
+
+    }, 1000);
+
+}
+
+
+/* ================= KUMPULKAN ================= */
+
+function kumpulkan() {
+
+    if (sudahSelesai) return;
+
+
+    const kosong = jawabanUser.filter(
+        jawaban => jawaban === null
+    ).length;
+
+
+    if (kosong > 0 && waktu > 0) {
+
+        const yakin = confirm(
+            "Masih ada " +
+            kosong +
+            " soal yang belum dijawab.\n\n" +
+            "Apakah kamu yakin ingin mengumpulkan?"
+        );
+
+
+        if (!yakin) return;
+
+    }
+
+
+    sudahSelesai = true;
+
+    clearInterval(timerInterval);
+
 
     let benar = 0;
 
-    for (let i = 1; i <= 10; i++) {
 
-        let jawaban = document.querySelector(
-            'input[name="q' + i + '"]:checked'
-        );
+    for (let i = 0; i < soal.length; i++) {
 
-        if (jawaban && jawaban.value === kunci["q" + i]) {
+        if (jawabanUser[i] === soal[i].jawaban) {
+
             benar++;
+
         }
+
     }
 
-    let nilai = benar * 10;
 
-    document.getElementById("hasil").style.display = "block";
+    const nilai = benar * 10;
 
-    document.getElementById("hasil").innerHTML =
-        "HASIL TRIAL<br><br>" +
-        "Nama: " + (nama || "-") + "<br>" +
-        "NPM: " + (npm || "-") + "<br><br>" +
-        "Jawaban benar: " + benar + " dari 10<br>" +
-        "Nilai: " + nilai;
 
-    document.getElementById("quizForm").style.display = "none";
+    document.getElementById("hasilNama").textContent =
+        document.getElementById("nama").value;
+
+
+    document.getElementById("hasilNpm").textContent =
+        document.getElementById("npm").value;
+
+
+    document.getElementById("hasilBenar").textContent =
+        benar;
+
+
+    document.getElementById("nilai").textContent =
+        nilai;
+
+
+    document.getElementById("examPage").style.display =
+        "none";
+
+
+    document.getElementById("resultPage").style.display =
+        "block";
+
 
     window.scrollTo(0, 0);
+
 }
+
 </script>
 
 </body>
