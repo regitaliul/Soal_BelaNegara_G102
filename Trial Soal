@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Evaluasi Bela Negara</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f2eb;
+    color: #183b5b;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 35px;
+    background: #fffdf9;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.header {
+    border-bottom: 3px solid #c28b32;
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+}
+
+.small-title {
+    color: #c28b32;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: 58px;
+    margin: 10px 0;
+    color: #183b5b;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: #60758a;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.info-box {
+    border: 1px solid #dce3e8;
+    border-radius: 18px;
+    padding: 20px;
+    background: white;
+}
+
+.info-box h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.info-box p {
+    margin: 0;
+    color: #60758a;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #d5dce1;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.agreement {
+    margin: 25px 0;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 14px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.start-btn,
+.submit-btn {
+    background: #183b5b;
+    color: white;
+}
+
+.start-btn:hover,
+.submit-btn:hover {
+    background: #102b43;
+}
+
+.hidden {
+    display: none;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.timer {
+    background: #fff1d6;
+    color: #9a6718;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.question-number {
+    color: #c28b32;
+    font-weight: bold;
+}
+
+.question {
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.option {
+    display: block;
+    padding: 15px;
+    margin: 12px 0;
+    border: 1px solid #dce3e8;
+    border-radius: 12px;
+    cursor: pointer;
+    background: white;
+}
+
+.option:hover {
+    background: #f0f4f7;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.nav-btn {
+    background: #e8edf1;
+    color: #183b5b;
+}
+
+.nav-btn:hover {
+    background: #d9e1e7;
+}
+
+.number-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 25px 0;
+}
+
+.number-navigation button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    background: #e8edf1;
+    color: #183b5b;
+}
+
+.number-navigation button.active {
+    background: #183b5b;
+    color: white;
+}
+
+.number-navigation button.answered {
+    border: 3px solid #c28b32;
+}
+
+.result {
+    text-align: center;
+    padding: 40px;
+}
+
+.result h2 {
+    font-family: Georgia, serif;
+    font-size: 42px;
+}
+
+.score {
+    font-size: 55px;
+    font-weight: bold;
+    color: #c28b32;
+}
+
+@media (max-width: 700px) {
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .info,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HALAMAN AWAL -->
+<div id="startPage">
+
+    <div class="header">
+        <div class="small-title">EVALUASI BELA NEGARA</div>
+
+        <h1>Bela Negara</h1>
+
+        <div class="subtitle">
+            Kelompok G102
+        </div>
+    </div>
+
+    <div class="info">
+
+        <div class="info-box">
+            <h3>10 Pilihan Ganda</h3>
+            <p>Setiap soal memiliki lima pilihan jawaban.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>20 Menit</h3>
+            <p>Waktu pengerjaan dibatasi selama 20 menit.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Nilai Otomatis</h3>
+            <p>Nilai akan dihitung setelah jawaban dikirim.</p>
+        </div>
+
+    </div>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label>Nama Mahasiswa</label>
+            <input type="text" id="nama" placeholder="Nama lengkap">
+        </div>
+
+        <div class="form-group">
+            <label>NPM</label>
+            <input type="text" id="npm" placeholder="NPM">
+        </div>
+
+    </div>
+
+    <div class="agreement">
+
+        <input type="checkbox" id="agree">
+
+        Saya memahami bahwa ujian terdiri dari 10 soal pilihan ganda
+        dengan waktu pengerjaan 20 menit.
+
+    </div>
+
+    <button class="start-btn" onclick="mulaiQuiz()">
+        Mulai Ujian
+    </button>
+
+</div>
+
+
+<!-- HALAMAN SOAL -->
+<div id="quizPage" class="hidden">
+
+    <div class="quiz-header">
+
+        <div>
+            <div class="small-title">EVALUASI BELA NEGARA</div>
+            <h2 id="namaPeserta"></h2>
+        </div>
+
+        <div class="timer">
+            ⏱ <span id="timer">20:00</span>
+        </div>
+
+    </div>
+
+    <div class="number-navigation" id="numberNavigation"></div>
+
+    <div class="question-number" id="questionNumber"></div>
+
+    <div class="question" id="questionText"></div>
+
+    <div id="options"></div>
+
+    <div class="navigation">
+
+        <button class="nav-btn" onclick="previousQuestion()">
+            ← Sebelumnya
+        </button>
+
+        <button class="nav-btn" onclick="nextQuestion()">
+            Berikutnya →
+        </button>
+
+    </div>
+
+    <br>
+
+    <button class="submit-btn" onclick="submitQuiz()">
+        Kirim Jawaban
+    </button>
+
+</div>
+
+
+<!-- HALAMAN HASIL -->
+<div id="resultPage" class="hidden">
+
+    <div class="result">
+
+        <div class="small-title">
+            HASIL UJIAN
+        </div>
+
+        <h2>Ujian Selesai</h2>
+
+        <p id="resultName"></p>
+
+        <p>Jawaban benar:</p>
+
+        <div class="score" id="score"></div>
+
+        <p id="scoreDetail"></p>
+
+        <button class="start-btn" onclick="location.reload()">
+            Ulangi Ujian
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+    {
+        question: "Apa yang dimaksud dengan bela negara?",
+        options: [
+            "Sikap dan perilaku warga negara untuk menjaga keutuhan negara",
+            "Kegiatan yang hanya dilakukan oleh anggota militer",
+            "Usaha untuk mendapatkan keuntungan pribadi",
+            "Kegiatan untuk menghindari kehidupan bermasyarakat",
+            "Sikap untuk mengutamakan kepentingan kelompok sendiri"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Salah satu contoh bela negara yang dapat dilakukan mahasiswa adalah...",
+        options: [
+            "Mengabaikan peraturan kampus",
+            "Menyebarkan informasi yang belum terbukti",
+            "Belajar dengan sungguh-sungguh dan bertanggung jawab",
+            "Merusak fasilitas umum",
+            "Menghindari kegiatan sosial"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Sikap yang mencerminkan cinta tanah air adalah...",
+        options: [
+            "Tidak peduli terhadap budaya daerah",
+            "Menghargai dan melestarikan budaya Indonesia",
+            "Merusak lingkungan",
+            "Menolak keberagaman masyarakat",
+            "Melupakan budaya sendiri"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Menghargai perbedaan suku, agama, dan budaya merupakan bentuk...",
+        options: [
+            "Sikap individualisme",
+            "Sikap tidak peduli",
+            "Sikap memecah persatuan",
+            "Sikap menjaga persatuan dan kesatuan",
+            "Sikap mengutamakan kepentingan pribadi"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Contoh kontribusi generasi muda bagi lingkungan adalah...",
+        options: [
+            "Membuang sampah sembarangan",
+            "Mengabaikan kebersihan lingkungan",
+            "Merusak fasilitas lingkungan",
+            "Tidak peduli terhadap masalah sosial",
+            "Mengikuti kegiatan kebersihan dan menjaga lingkungan"
+        ],
+        answer: 4
+    },
+
+    {
+        question: "Sikap rela berkorban dalam kehidupan bermasyarakat dapat ditunjukkan dengan...",
+        options: [
+            "Mementingkan diri sendiri",
+            "Membantu orang lain yang membutuhkan",
+            "Menghindari kegiatan sosial",
+            "Menolak kerja sama",
+            "Mengabaikan kepentingan bersama"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Salah satu cara menjaga persatuan dan kesatuan adalah...",
+        options: [
+            "Menghargai perbedaan",
+            "Menyebarkan konflik",
+            "Memaksakan pendapat",
+            "Merendahkan kelompok lain",
+            "Menghindari kerja sama"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Menjaga fasilitas umum merupakan bentuk tanggung jawab karena...",
+        options: [
+            "Fasilitas umum hanya digunakan pemerintah",
+            "Fasilitas umum merupakan milik pribadi",
+            "Fasilitas umum digunakan untuk kepentingan bersama",
+            "Fasilitas umum tidak perlu dirawat",
+            "Fasilitas umum hanya digunakan mahasiswa"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Perilaku yang dapat memperkuat persatuan bangsa adalah...",
+        options: [
+            "Menghargai pendapat orang lain",
+            "Menyebarkan kebencian",
+            "Membeda-bedakan teman",
+            "Menolak keberagaman",
+            "Memaksakan kehendak"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Bela negara dapat diterapkan dalam kehidupan sehari-hari melalui...",
+        options: [
+            "Tindakan yang merugikan masyarakat",
+            "Sikap tidak peduli terhadap lingkungan",
+            "Kepatuhan terhadap aturan dan tanggung jawab sebagai warga negara",
+            "Penolakan terhadap keberagaman",
+            "Mengutamakan kepentingan pribadi"
+        ],
+        answer: 2
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let userAnswers = new Array(questions.length).fill(null);
+
+let timeLeft = 20 * 60;
+
+let timerInterval;
+
+
+function mulaiQuiz() {
+
+    const nama = document.getElementById("nama").value.trim();
+
+    const npm = document.getElementById("npm").value.trim();
+
+    const agree = document.getElementById("agree").checked;
+
+
+    if (nama === "" || npm === "") {
+
+        alert("Silakan isi Nama dan NPM terlebih dahulu.");
+
+        return;
+
+    }
+
+
+    if (!agree) {
+
+        alert("Silakan centang pernyataan persetujuan terlebih dahulu.");
+
+        return;
+
+    }
+
+
+    document.getElementById("startPage").classList.add("hidden");
+
+    document.getElementById("quizPage").classList.remove("hidden");
+
+    document.getElementById("namaPeserta").innerText =
+        nama + " | " + npm;
+
+
+    createNumberNavigation();
+
+    showQuestion();
+
+    startTimer();
+
+}
+
+
+function createNumberNavigation() {
+
+    const nav = document.getElementById("numberNavigation");
+
+    nav.innerHTML = "";
+
+
+    questions.forEach((q, index) => {
+
+        const button = document.createElement("button");
+
+        button.innerText = index + 1;
+
+        button.onclick = function() {
+
+            currentQuestion = index;
+
+            showQuestion();
+
+        };
+
+        nav.appendChild(button);
+
+    });
+
+}
+
+
+function showQuestion() {
+
+    const q = questions[currentQuestion];
+
+
+    document.getElementById("questionNumber").innerText =
+        "Soal " + (currentQuestion + 1) +
+        " dari " + questions.length;
+
+
+    document.getElementById("questionText").innerText =
+        q.question;
+
+
+    const options = document.getElementById("options");
+
+    options.innerHTML = "";
+
+
+    q.options.forEach((option, index) => {
+
+        const label = document.createElement("label");
+
+        label.className = "option";
+
+
+        const radio = document.createElement("input");
+
+        radio.type = "radio";
+
+        radio.name = "answer";
+
+        radio.value = index;
+
+
+        if (userAnswers[currentQuestion] === index) {
+
+            radio.checked = true;
+
+        }
+
+
+        radio.onchange = function() {
+
+            userAnswers[currentQuestion] = index;
+
+            updateNavigation();
+
+        };
+
+
+        label.appendChild(radio);
+
+        label.appendChild(
+            document.createTextNode(
+                String.fromCharCode(65 + index) +
+                ". " + option
+            )
+        );
+
+
+        options.appendChild(label);
+
+    });
+
+
+    updateNavigation();
+
+}
+
+
+function updateNavigation() {
+
+    const buttons =
+        document.querySelectorAll("#numberNavigation button");
+
+
+    buttons.forEach((button, index) => {
+
+        button.classList.remove("active");
+
+        button.classList.remove("answered");
+
+
+        if (index === currentQuestion) {
+
+            button.classList.add("active");
+
+        }
+
+
+        if (userAnswers[index] !== null) {
+
+            button.classList.add("answered");
+
+        }
+
+    });
+
+}
+
+
+function nextQuestion() {
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }
+
+}
+
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+function startTimer() {
+
+    timerInterval = setInterval(function() {
+
+        timeLeft--;
+
+
+        const minutes =
+            Math.floor(timeLeft / 60);
+
+        const seconds =
+            timeLeft % 60;
+
+
+        document.getElementById("timer").innerText =
+
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timerInterval);
+
+            alert("Waktu ujian telah habis.");
+
+            submitQuiz();
+
+        }
+
+    }, 1000);
+
+}
+
+
+function submitQuiz() {
+
+    const unanswered =
+        userAnswers.filter(answer => answer === null).length;
+
+
+    if (unanswered > 0) {
+
+        const confirmSubmit =
+            confirm(
+                "Masih ada " +
+                unanswered +
+                " soal yang belum dijawab. Tetap kirim?"
+            );
+
+
+        if (!confirmSubmit) {
+
+            return;
+
+        }
+
+    }
+
+
+    clearInterval(timerInterval);
+
+
+    let correct = 0;
+
+
+    questions.forEach((question, index) => {
+
+        if (userAnswers[index] === question.answer) {
+
+            correct++;
+
+        }
+
+    });
+
+
+    const score =
+        Math.round((correct / questions.length) * 100);
+
+
+    document.getElementById("quizPage")
+        .classList.add("hidden");
+
+
+    document.getElementById("resultPage")
+        .classList.remove("hidden");
+
+
+    document.getElementById("resultName").innerText =
+        document.getElementById("namaPeserta").innerText;
+
+
+    document.getElementById("score").innerText =
+        score;
+
+
+    document.getElementById("scoreDetail").innerText =
+        "Jawaban benar " +
+        correct +
+        " dari " +
+        questions.length +
+        " soal.";
+
+}
+
+</script>
+
+</body>
+</html>
